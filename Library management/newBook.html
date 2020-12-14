@@ -1,0 +1,138 @@
+<!DOCTYPE html> 
+<html> 
+<style> 
+    /*set border to the form*/ 
+      
+    form { 
+        border: 3px solid #f1f1f1; width: 600px; height: 100px; margin-left: 500px; margin-top: 100px;
+    } 
+    /*assign full width inputs*/ 
+      
+   input[type=text], 
+    input[type=password], input[type=num], input[type=datetime] { 
+        width: 100%; 
+        padding: 12px 20px; 
+        margin: 8px 0; 
+        display: inline-block; 
+        border: 1px solid #ccc; 
+        box-sizing: border-box; 
+    } 
+    /*set a style for the buttons*/ 
+      
+    button { 
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 14px 20px; 
+        margin: 8px 0; 
+        border: none; 
+        cursor: pointer; 
+        width: 100%; 
+    } 
+    /* set a hover effect for the button*/ 
+      
+    button:hover { 
+        opacity: 0.8; 
+    } 
+    /*set extra style for the cancel button*/ 
+      
+    .cancelbtn { 
+        width: auto; 
+        padding: 10px 18px; 
+        background-color: #f44336; 
+    } 
+	
+	
+   
+    
+    } 
+    /*set padding to the container  */ 
+      
+    .container { 
+      padding: 16px ;  
+    } 
+    /*set the forgot password text*/ 
+      
+    span.psw { 
+        float: right; 
+        padding-top: 16px; 
+    } 
+    /*set styles for span and cancel button on small screens*/ 
+      
+    @media screen and (max-width: 300px) { 
+        span.psw { 
+            display: block; 
+            float: none; 
+        } 
+        .cancelbtn { 
+            width: 100%; 
+        } 
+    } 
+</style> 
+  
+<body> 
+ 
+
+
+    
+    <!--Step 1 : Adding HTML-->
+
+    <form action="http://localhost/Library%20Management/newBook.php" method="POST"  > 
+        
+   <h2 align="center">Add New Book</h2>
+        <div class="container" > 
+		<label id="BID" for="Book_ID"><b>Book_ID</b></label> 
+            <input type="num" placeholder="Enter Book_ID" name="Book_ID" required >
+		
+            <label for="Book_Title"><b>Book_Title</b></label> 
+            <input type="text" placeholder="Enter Book_Title" name="Book_Title" required > 
+  
+            <label for="Author"><b>Author</b></label> 
+            <input type="text" placeholder="Enter Auther name" name="Author" required> 
+			
+			<label for="Editors"><b>Editors</b></label> 
+            <input type="text" placeholder="Enter Editors name" name="Editors" > 
+			 
+			 <label for="Year_Of_Edition"><b>Year_Of_Edition</b></label> 
+            <input type="datetime" placeholder="Enter Year_Of_Edition" name="Year_Of_Edition" required> 
+			
+			 <label for="ISBN"><b>ISBN</b></label> 
+            <input type="num" placeholder="Enter ISBN" name="ISBN" required> 
+  
+           <button type="submit"  >Add</button> 
+		  
+            
+        </div> 
+  
+        <div class="container" style="background-color:#f1f1f1" > 
+            <button  type="reset" class="cancelbtn" >Reset</button> 
+			<button  type="button" class="cancelbtn" onclick="history.go(-1)">Close</button>
+           
+        </div> 
+    </form> 
+	
+	
+	
+	
+	
+  
+</body>
+<script>
+   function loadNextSeqToForm() {
+            var nextValue = sessionStorage.getItem("next") != null? sessionStorage.getItem("next") : 1; 
+            document.getElementById("BID").value = formatToSixCharacters(nextValue); 
+            sessionStorage.setItem("next", parseInt(nextValue) + 1)
+        } 
+
+        function formatToSixCharacters(num) {
+            var numStr = num + "";
+            if(numStr.length > 0) {
+                var zeros = 6 - numStr.length;
+                for(var i = 1; i <=zeros; i++) {
+                    numStr = "0" + numStr;
+                }
+            }
+            return numStr;
+		}		
+</script>		
+  
+</html> 

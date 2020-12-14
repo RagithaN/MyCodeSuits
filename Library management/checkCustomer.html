@@ -1,0 +1,127 @@
+<!DOCTYPE html> 
+<html> 
+<style> 
+    /*set border to the form*/ 
+      
+    #bottom { 
+        border: 3px solid #f1f1f1; width: 500px; height: 100px; margin-left: 500px; margin-top: 400px;
+    } 
+	#top{ 
+        border: 3px solid #f1f1f1; width: 500px; height: 100px; margin-left: 500px; margin-top: 10px;
+    } 
+    /*assign full width inputs*/ 
+      
+  input[type=text], 
+    input[type=password], input[type=num], input[type=datetime],input[type=textarea],input[type=email],input[type=ph] { 
+        width: 100%; 
+        padding: 12px 20px; 
+        margin: 8px 0; 
+        display: inline-block; 
+        border: 1px solid #ccc; 
+        box-sizing: border-box; 
+    } 
+    /*set a style for the buttons*/ 
+      
+    button { 
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 14px 20px; 
+        margin: 8px 0; 
+        border: none; 
+        cursor: pointer; 
+        width: 100%; 
+    } 
+    /* set a hover effect for the button*/ 
+      
+    button:hover { 
+        opacity: 0.8; 
+    } 
+    /*set extra style for the cancel button*/ 
+      
+    .cancelbtn { 
+        width: auto; 
+        padding: 10px 18px; 
+        background-color: #f44336; 
+    } 
+	
+	
+   
+    
+    } 
+    /*set padding to the container  */ 
+      
+    .container { 
+      padding: 16px ;  
+    } 
+    /*set the forgot password text*/ 
+      
+    span.psw { 
+        float: right; 
+        padding-top: 16px; 
+    } 
+    /*set styles for span and cancel button on small screens*/ 
+      
+    @media screen and (max-width: 300px) { 
+        span.psw { 
+            display: block; 
+            float: none; 
+        } 
+        .cancelbtn { 
+            width: 100%; 
+        } 
+    } 
+</style> 
+  
+<body> 
+ 
+
+
+    
+    <!--Step 1 : Adding HTML-->
+
+    <form  id="top" action="http://localhost/Library%20Management/deleteCustomer.php" method="POST"  > 
+        
+   <h2 align="center">Customer Details </h2>
+       <div class="container" > 
+	   <?php 
+	  
+	   while($row=mysqli_fetch_array($result)):?>
+		<label id="CID" for="Customer_ID"><b>Customer_ID</b></label> 
+            <input readonly type="num"  name="Customer_ID"  value="<?php echo $row['CID'];?>" >
+		
+            <label for="Customer_name"><b>Customer_name</b></label> 
+            <input   type="text"  name="Customer_name"  value="<?php echo $row['name'];?>"> 
+  
+            <label for="Address"><b>Address</b></label> 
+            <input  type="text"  name="Address"  value="<?php echo $row['address'];?>"> 
+			
+			<label for="Email"><b>Email</b></label> 
+            <input  type="text"  name="Email" value="<?php echo $row['email'];?>"> 
+			 
+			
+			
+			 <label for="Phone"><b>Phone</b></label> 
+            <input  type="num"  name="Phone"  value="<?php echo $row['phone'];?>"> 
+			
+			
+  
+           <button  id="edit" type="submit"    >Edit</button> 
+		  
+           
+        </div> 
+ 
+ 
+	</form> 
+	 <form id="bottom" action="http://localhost/Library%20Management/viewBooks.php" method="post">
+        <div class="container" style="background-color:#f1f1f1" > 
+            
+			<button  type="button" class="cancelbtn" onclick="history.go(-1)">Close</button>
+		<input hidden   name="CID" value="<?php echo $row['CID'];?>"> 
+           <button type="submit">View Books</buttom>
+        </div>
+   </form>
+	
+	 <?php endwhile;?>
+</body> 
+  
+</html> 
